@@ -15,7 +15,7 @@ import pytz
 
 CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 FILENAME = os.path.splitext(os.path.basename(__file__))[0]
-sys.path.insert(0, CURRENT_PATH + '/../../config')
+sys.path.insert(0, CURRENT_PATH + '/../../')
 
 from config.config import Config
 CONFIGS = Config()
