@@ -1,7 +1,7 @@
-hip_2_save
+deal_tracking
 ============
 
-Repository For Scripts and Reports for Hip2Save Deal Tracking
+Repository For Scripts and Reports for Deal Tracking
 
 Structure:
 <table>
