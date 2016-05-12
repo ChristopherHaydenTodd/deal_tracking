@@ -5,7 +5,11 @@
 
 import logging
 
+
 class Config(object):
+    """
+        Project Configuration Class
+    """
 
     ###
     # Log Configs
@@ -21,5 +25,3 @@ class Config(object):
     ###
 
     HIP_2_SAVE_RSS_URL = 'https://hip2save.com/feed/'
-
-

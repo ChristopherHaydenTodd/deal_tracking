@@ -3,20 +3,21 @@
     Pull RSS Data, Parse, Create Excel Report, and Email
 """
 
-import sys
-import os
-import logging
-import pytz
-import requests
-import xml.etree.ElementTree as ET
-import xlwt
 from datetime import datetime
+import logging
+import os
+import sys
+import xml.etree.ElementTree as ET
+
+import requests
+import xlwt
+import pytz
 
 CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 FILENAME = os.path.splitext(os.path.basename(__file__))[0]
 sys.path.insert(0, CURRENT_PATH + '/../config')
 
-from config import Config
+from config.config import Config
 CONFIGS = Config()
 
 logging.basicConfig(
@@ -29,7 +30,7 @@ def main():
     """
         Pull RSS Data from Hip2Save and Parse
     """
-    
+
     logging.info('Starting Script to Pull Hip2Save RSS Feed')
 
     rss_xml = pull_hip_2_save_rss_xml()
@@ -47,12 +48,12 @@ def pull_hip_2_save_rss_xml():
         Pull RSS Data from Hip2Save's RSS Feed XML
     """
     logging.info('Pulling Hip2Save RSS Feed XML')
-    
-    r = requests.get(CONFIGS.HIP_2_SAVE_RSS_URL)
-    rss_feed_xml = r.text
+
+    request = requests.get(CONFIGS.HIP_2_SAVE_RSS_URL)
+    rss_feed_xml = request.text
 
     if not rss_feed_xml:
-        raise('Cannot Pull RSS Data from Hip2Save')
+        raise Exception('Cannot Pull RSS Data from Hip2Save')
 
     return rss_feed_xml
 
@@ -90,7 +91,7 @@ def build_hip_2_save_deal_report(hip_2_save_deals):
     workbook = xlwt.Workbook()
 
     headers_style = xlwt.easyxf(
-        'font: bold 1; align:wrap on; pattern: pattern solid, fore_colour gray25')
+        'align:wrap on; pattern: pattern solid, fore_colour gray25')
     headers = hip_2_save_deals[0].keys()
 
     sheet = workbook.add_sheet('Hip2Save Deals')
@@ -116,6 +117,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception, err:
-        logging.error('Failed to Run Script {0}'.format(err))
+        logging.error('Failed to Run Script %s', err)
         raise
-
