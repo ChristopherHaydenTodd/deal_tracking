@@ -106,7 +106,7 @@ def build_hip_2_save_deal_report(hip_2_save_deals):
     report_date =\
         datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d')
     hip_2_save_deal_report =\
-        '../../data/deals_{0}.xls'.format(report_date)
+        '../../data/hip_2_save/deals_{0}.xls'.format(report_date)
     workbook.save(hip_2_save_deal_report)
 
     return hip_2_save_deal_report
