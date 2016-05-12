@@ -15,7 +15,7 @@ import pytz
 
 CURRENT_PATH = os.path.dirname(os.path.realpath(__file__))
 FILENAME = os.path.splitext(os.path.basename(__file__))[0]
-sys.path.insert(0, CURRENT_PATH + '/../config')
+sys.path.insert(0, CURRENT_PATH + '/../../')
 
 from config.config import Config
 CONFIGS = Config()
@@ -23,7 +23,7 @@ CONFIGS = Config()
 logging.basicConfig(
     level=CONFIGS.LOG_LEVEL, format=CONFIGS.LOG_FORMAT,
     datefmt=CONFIGS.LOG_DATEFORMAT, filemode=CONFIGS.LOG_FILEMODE,
-    filename='../logs/{0}.log'.format(FILENAME))
+    filename='../../logs/{0}.log'.format(FILENAME))
 
 
 def main():
@@ -106,7 +106,7 @@ def build_hip_2_save_deal_report(hip_2_save_deals):
     report_date =\
         datetime.now(pytz.timezone('US/Eastern')).strftime('%Y-%m-%d')
     hip_2_save_deal_report =\
-        '../data/deals_{0}.xls'.format(report_date)
+        '../../data/hip_2_save/deals_{0}.xls'.format(report_date)
     workbook.save(hip_2_save_deal_report)
 
     return hip_2_save_deal_report
